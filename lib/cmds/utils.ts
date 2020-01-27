@@ -101,10 +101,14 @@ export function convertArgs2Options(argv: yargs.Arguments): Options {
     options.server.name = 'selenium';
     options.server.runAsNode = argv['selenium_node'] as boolean;
     options.server.runAsDetach = argv.detach as boolean;
+    // @ts-ignore
     options.server.version = argv['versions'] && argv['versions']['selenium'] ?
+        // @ts-ignore
       argv['versions']['selenium'] as string : undefined;
     options.server.maxVersion = argv['max_versions']
+    // @ts-ignore
       && argv['max_versions']['selenium'] ?
+        // @ts-ignore
       argv['versions']['selenium'] as string : undefined;
     options.server.chromeLogs = argv.chrome_logs as string;
     options.server.edge = argv.edge as string;
@@ -116,9 +120,13 @@ export function convertArgs2Options(argv: yargs.Arguments): Options {
 
 function setVersions(name: BrowserDriverName,
     argv: yargs.Arguments, browserDrivers: BrowserDriver[]): BrowserDriver[] {
+  // @ts-ignore
   const version = argv['versions'] && argv['versions'][name] ?
+      // @ts-ignore
     argv['versions'][name] as string : undefined;
+  // @ts-ignore
   const maxVersion = argv['max_versions'] && argv['max_versions'][name] ?
+      // @ts-ignore
     argv['max_versions'][name] as string : undefined;
   browserDrivers.push({name, version, maxVersion});
   return browserDrivers;

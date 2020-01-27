@@ -105,6 +105,7 @@ describe('cloud_storage_xml', () => {
         // Maintain the fs.statSync method before being spyed on.
         // Spy on the fs.statSync method and return fake values.
         const fsStatSync = fs.statSync;
+        // @ts-ignore
         spyOn(fs, 'statSync').and.returnValue({size: 1000, mtime});
 
         try {
@@ -125,6 +126,7 @@ describe('cloud_storage_xml', () => {
         // Maintain the fs.statSync method before being spyed on.
         // Spy on the fs.statSync method and return fake values.
         const fsStatSync = fs.statSync;
+        // @ts-ignore
         spyOn(fs, 'statSync').and.returnValue({size: 1000, mtime});
 
         try {

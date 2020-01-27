@@ -11,6 +11,7 @@ const log = loglevel.getLogger('webdriver-manager');
  * @param argv The argv from yargs.
  */
 export function handler(argv: yargs.Arguments) {
+  // @ts-ignore
   log.setLevel(argv.log_level);
   const options = convertArgs2AllOptions(argv);
   log.info(clean(options));

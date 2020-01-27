@@ -38,18 +38,21 @@ describe('file_utils', () => {
   describe('isExpired', () => {
     it('should return true if the file is zero', () => {
       const mtime = Date.now() - 1000;
+      // @ts-ignore
       spyOn(fs, 'statSync').and.returnValue({size: 0, mtime});
       expect(isExpired('foobar.xml')).toBeTruthy();
     });
 
     it('should return true if the file is zero', () => {
       const mtime = Date.now() - (60 * 60 * 1000) - 5000;
+      // @ts-ignore
       spyOn(fs, 'statSync').and.returnValue({size: 1000, mtime});
       expect(isExpired('foobar.xml')).toBeTruthy();
     });
 
     it('should return true if the file is zero', () => {
       const mtime = Date.now() - (60 * 60 * 1000) + 5000;
+      // @ts-ignore
       spyOn(fs, 'statSync').and.returnValue({size: 1000, mtime});
       expect(isExpired('foobar.xml')).toBeFalsy();
     });
@@ -121,6 +124,7 @@ describe('file_utils', () => {
         'bar.json',
       ];
       const fileBinaryPathRegex: RegExp = /foo_\d+.\d+/g;
+      // @ts-ignore
       spyOn(fs, 'readdirSync').and.returnValue(existingFiles);
       const matchedFiles = getMatchingFiles('/path/to', fileBinaryPathRegex);
       expect(matchedFiles[0]).toContain('foo_12.2');
