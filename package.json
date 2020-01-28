@@ -1,6 +1,6 @@
 {
-  "name": "webdriver-manager-replacement",
-  "version": "2.0.2",
+  "name": "@egis/webdriver-manager-replacement",
+  "version": "2.1.0-pre.1",
   "description": "webdriver-manager-replacement",
   "bin": {
     "webdriver-manager-replacement": "bin/webdriver-manager-replacement",
@@ -50,7 +50,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cnishina/webdriver-manager-replacement.git"
+    "url": "git+https://github.com/artemv/webdriver-manager-replacement.git"
   },
   "author": "Craig Nishina <craig.nishina@gmail.com>",
   "license": "MIT",
