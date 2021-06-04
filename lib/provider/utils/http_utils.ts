@@ -38,6 +38,7 @@ export interface HttpOptions {
   ignoreSSL?: boolean;
   // When making the request, use the proxy url provided.
   proxy?: string;
+  timeout?: number;
 }
 
 /**
@@ -50,8 +51,8 @@ export function initOptions(
   let options: RequestOptionsValue = {
     url: requestUrl,
     // default Linux can be anywhere from 20-120 seconds
-    // increasing this arbitrarily to 4 minutes
-    timeout: 240000
+    // increasing this arbitrarily to 4 minutes by default
+    timeout: httpOptions.timeout || 240000
   };
   options = optionsSSL(options, httpOptions.ignoreSSL);
   options = optionsProxy(options, requestUrl, httpOptions.proxy);
@@ -237,13 +238,7 @@ export function requestBinary(
         }
       } else if (response.statusCode === 302) {
         const location = response.headers['location'] as string;
-        if (!httpOptions.headers) {
-          httpOptions.headers = {};
-        }
-        for (const header of Object.keys(response.headers)) {
-          httpOptions.headers[header] = response.headers[header];
-        }
-        resolve(requestBinary(location, httpOptions, false));
+        resolve(requestBinary(location, httpOptions, true));
       } else {
         reject(new Error('response status code is not 200'));
       }

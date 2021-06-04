@@ -37,7 +37,10 @@ export function updateBinary(optionsBinary: OptionsBinary): Promise<void[]> {
   if (optionsBinary.browserDrivers) {
     for (const provider of optionsBinary.browserDrivers) {
       promises.push(provider.binary.updateBinary(provider.version,
-        provider.maxVersion));
+        provider.maxVersion).catch((e) => {
+          log.warn(`Failed to update ${provider.name}' driver`, e, provider);
+          return Promise.reject(e);
+        }));
     }
   }
   if (optionsBinary.server && optionsBinary.server.binary) {
